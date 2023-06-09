@@ -1,7 +1,7 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import { FaGithub, FaPlus, FaSpinner, FaBars, FaTrash } from 'react-icons/fa';
 import {Container, Form, SubmitButton, List, DeleteButton} from './styles';
-import {Link, useParams} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import api from '../../services/api';
 
 export default function Main(){
@@ -10,7 +10,8 @@ export default function Main(){
   const [repositorios, setRepositorios] = useState([]);
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
-  const { id } = useParams();
+
+
   // Buscar
   useEffect(()=>{
     const repoStorage = localStorage.getItem('repos');
@@ -51,6 +52,7 @@ export default function Main(){
           name: response.data.full_name,
         }
     
+        console.log(data.name)
         setRepositorios([...repositorios, data]);
         setNewRepo('');
       }catch(error){
